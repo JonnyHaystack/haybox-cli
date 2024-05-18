@@ -1,16 +1,7 @@
+from ast import List
 import click
 from haybox import haybox
 import json
-import time
-
-from cobs import cobs
-from google.protobuf.json_format import MessageToDict, Parse, ParseDict
-from serial import Serial
-from serial import SerialException
-from serial.tools import list_ports
-from serial.tools.list_ports_common import ListPortInfo
-
-from proto import config_pb2
 
 
 @click.group(context_settings=dict(help_option_names=["-h", "--help"], max_content_width=150))
@@ -19,42 +10,27 @@ def main():
     pass
 
 
-@main.command("list-devices")
+@main.command("devices")
 def list_devices():
-    devices: [haybox.Controller] = haybox.scan_devices()
+    devices: List[haybox.Controller] = haybox.scan_devices()
     for device in devices:
-        print(f"{device.serial_port.port}")
+        print(f"Device on {device.serial_port.port}:")
+        device_info = device.get_device_info()
+        if device_info is None:
+            return
+        print(f"   Device name: {device_info['deviceName']}")
+        print(f"   Firmware name: {device_info['firmwareName']}")
+        print(f"   Firmware version: {device_info['firmwareVersion']}")
 
 
-@main.command("device-info")
+@main.command("info")
 @click.option("--device", "-d")
 def get_device_info(device):
     controller = haybox.Controller(device)
-    print(controller.get_device_info())
-
-
-@main.command("get-config")
-@click.option("--device", "-d")
-@click.option("--output-to", "-o")
-def get_config(device, output_to):
-    controller = haybox.Controller(device)
-    if output_to is None:
-        print(json.dumps(controller.get_config(), indent=2))
+    device_info = controller.get_device_info()
+    if device_info is None:
         return
-
-    with open(output_to, "w") as f:
-        json.dump(controller.get_config(), f, indent=2)
-
-
-@main.command("set-config")
-@click.option("--device", "-d")
-@click.argument("file")
-def set_config(device, file):
-    controller = haybox.Controller(device)
-    print("Opening and parsing config file to dict...")
-    with open(file) as f:
-        config_dict = json.load(f)
-    controller.set_config(config_dict)
+    print(device_info)
 
 
 @main.command("reboot")
@@ -72,16 +48,37 @@ def reboot(device, reboot_to):
         controller.reboot_bootloader()
 
 
-def reboot_firmware():
-    print("Sending CMD_REBOOT_FIRMWARE...")
-    write_packet(config_pb2.CMD_REBOOT_FIRMWARE)
-    print("Finished sending")
+@main.group("config")
+def config():
+    pass
 
 
-def reboot_bootloader():
-    print("Sending CMD_REBOOT_BOOTLOADER...")
-    write_packet(config_pb2.CMD_REBOOT_BOOTLOADER)
-    print("Finished sending")
+@config.command("get")
+@click.option("--device", "-d")
+@click.option("--output-to", "-o")
+def get_config(device, output_to):
+    controller = haybox.Controller(device)
+    config_data = controller.get_config()
+    if config_data is None:
+        return
+
+    if output_to is None:
+        print(json.dumps(controller.get_config(), indent=2))
+        return
+
+    with open(output_to, "w") as f:
+        json.dump(controller.get_config(), f, indent=2)
+
+
+@config.command("set")
+@click.option("--device", "-d")
+@click.argument("file")
+def set_config(device, file):
+    controller = haybox.Controller(device)
+    print("Opening and parsing config file to dict...")
+    with open(file) as f:
+        config_dict = json.load(f)
+    controller.set_config(config_dict)
 
 
 if __name__ == "__main__":

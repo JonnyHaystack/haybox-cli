@@ -6,10 +6,8 @@ authors = ["Jonathan Haylett <jonathan@haylett.dev>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pyserial = "^3.5"
-cobs = "^1.2.0"
-protobuf = "^4.24.3"
 click = "^8.1.7"
+haybox = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 grpcio-tools = "^1.58.0"
