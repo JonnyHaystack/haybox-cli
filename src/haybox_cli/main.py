@@ -75,7 +75,6 @@ def get_config(device, output_to):
 @click.argument("file")
 def set_config(device, file):
     controller = haybox.Controller(device)
-    print("Opening and parsing config file to dict...")
     with open(file) as f:
         config_dict = json.load(f)
     controller.set_config(config_dict)

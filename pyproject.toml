@@ -3,6 +3,10 @@ name = "haybox-cli"
 version = "0.1.0"
 description = ""
 authors = ["Jonathan Haylett <jonathan@haylett.dev>"]
+packages = [{include = "haybox_cli", from = "src"}]
+
+[tool.poetry.scripts]
+haybox = "haybox_cli:main.main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
