@@ -29,9 +29,8 @@ jobs:
       - name: Build executable
         run: |
           poetry build
-          mkdir -p haybox-windows
+          mkdir haybox-windows
           cp ./dist/pyinstaller/win_amd64/haybox.exe haybox-windows/haybox-%VERSION_REF%.exe
-          dir haybox-windows
       
       - name: Publish artifact
         uses: actions/upload-artifact@v3
