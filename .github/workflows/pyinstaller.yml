@@ -12,6 +12,8 @@ jobs:
           - name: windows-latest
 
     runs-on: ${{ matrix.os.name }}
+    permissions:
+      contents: write
 
     env:
       VERSION_REF: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
@@ -30,16 +32,16 @@ jobs:
         run: |
           poetry build
           mkdir haybox-windows
-          cp ./dist/pyinstaller/win_amd64/haybox.exe haybox-windows/haybox-${{ env.VERSION_REF }}.exe
+          cp ./dist/pyinstaller/win_amd64/haybox.exe haybox-windows/haybox-cli-${{ env.VERSION_REF }}.exe
       
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
-          name: haybox-cli-${{ env.VERSION_REF }}
-          path: haybox-windows/haybox-${{ env.VERSION_REF }}.exe
+          name: haybox-cli-${{ env.VERSION_REF }}.exe
+          path: haybox-windows/haybox-cli-${{ env.VERSION_REF }}.exe
 
       - name: Upload binary to release
         uses: softprops/action-gh-release@v1
         if: github.ref_type == 'tag'
         with:
-          files: haybox-windows/haybox-${{ env.VERSION_REF }}.exe
+          files: haybox-windows/haybox-cli-${{ env.VERSION_REF }}.exe
