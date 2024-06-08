@@ -1,8 +1,10 @@
 [tool.poetry]
 name = "haybox-cli"
 version = "0.1.2"
-description = ""
+description = "Command line app for interacting with HayBox firmware"
 authors = ["Jonathan Haylett <jonathan@haylett.dev>"]
+license = "GPL-3.0-only"
+readme = "README.md"
 packages = [{include = "haybox_cli", from = "src"}]
 
 [tool.poetry.scripts]
