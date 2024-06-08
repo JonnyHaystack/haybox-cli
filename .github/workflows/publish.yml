@@ -1,0 +1,25 @@
+name: Build and publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
+
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt install pipx
+          pipx install poetry
+
+      - name: Check out this repo
+        uses: actions/checkout@v4
+
+      - name: Build and publish package
+        run: poetry publish --build
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
