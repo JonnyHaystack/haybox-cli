@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     env:
       RELEASE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}

@@ -8,6 +8,9 @@ packages = [{include = "haybox_cli", from = "src"}]
 [tool.poetry.scripts]
 haybox = "haybox_cli:main.main"
 
+[tool.poetry-pyinstaller-plugin.scripts]
+haybox = { source = "src/haybox_cli/main.py", type = "onefile", bundle = false }
+
 [tool.poetry.dependencies]
 python = "^3.9"
 click = "^8.1.7"
