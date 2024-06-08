@@ -10,7 +10,7 @@ def main():
     pass
 
 
-@main.command("devices")
+@main.command("devices", help="Scan for connected configurable HayBox devices.")
 def list_devices():
     devices: List[haybox.Controller] = haybox.scan_devices()
     for device in devices:
@@ -23,8 +23,8 @@ def list_devices():
         print(f"   Firmware version: {device_info['firmwareVersion']}")
 
 
-@main.command("info")
-@click.option("--device", "-d")
+@main.command("info", help="Print device info in JSON format for a specific HayBox device.")
+@click.option("--device", "-d", help="The serial port to connect to.")
 def get_device_info(device):
     controller = haybox.Controller(device)
     device_info = controller.get_device_info()
@@ -33,13 +33,9 @@ def get_device_info(device):
     print(device_info)
 
 
-@main.command("reboot")
-@click.option("--device", "-d")
-@click.argument(
-    "reboot_to",
-    type=click.Choice(["firmware", "bootloader"]),
-    default="firmware",
-)
+@main.command("reboot", help="Reboot the device to firmware or bootloader.")
+@click.option("--device", "-d", help="The serial port to connect to.")
+@click.argument("reboot_to", type=click.Choice(["firmware", "bootloader"]), default="firmware")
 def reboot(device, reboot_to):
     controller = haybox.Controller(device)
     if reboot_to == "firmware":
@@ -48,14 +44,19 @@ def reboot(device, reboot_to):
         controller.reboot_bootloader()
 
 
-@main.group("config")
+@main.group("config", help="Retrieve or update the active configuration on the device.")
 def config():
     pass
 
 
-@config.command("get")
-@click.option("--device", "-d")
-@click.option("--output-to", "-o")
+@config.command("get", help="Retrieve current configuration from device.")
+@click.option("--device", "-d", help="The serial port to connect to.")
+@click.option(
+    "--output-to",
+    "-o",
+    type=click.Path(dir_okay=False, writable=True),
+    help="A file to write the device's current configuration to.",
+)
 def get_config(device, output_to):
     controller = haybox.Controller(device)
     config_data = controller.get_config()
@@ -70,8 +71,8 @@ def get_config(device, output_to):
         json.dump(controller.get_config(), f, indent=2)
 
 
-@config.command("set")
-@click.option("--device", "-d")
+@config.command("set", help="Update the configuration on the device.")
+@click.option("--device", "-d", help="The serial port to connect to.")
 @click.argument("file")
 def set_config(device, file):
     controller = haybox.Controller(device)
