@@ -1,4 +1,4 @@
-# haybox-cli
+# HayBox CLI
 
 Command line app for interacting with HayBox firmware
 
