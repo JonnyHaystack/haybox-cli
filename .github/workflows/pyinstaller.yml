@@ -30,6 +30,9 @@ jobs:
         run: |
           poetry build
           mkdir -p haybox-windows
+          dir
+          dir ..
+          dir build
           cp ./build/win_amd64/haybox.exe haybox-windows/haybox-${VERSION_REF}.exe
       
       - name: Publish artifact
