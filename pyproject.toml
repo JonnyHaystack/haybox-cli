@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "haybox-cli"
-version = "0.1.3"
+version = "0.1.4"
 description = "Command line app for interacting with HayBox firmware"
 authors = ["Jonathan Haylett <jonathan@haylett.dev>"]
 license = "GPL-3.0-only"
