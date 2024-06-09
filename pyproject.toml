@@ -16,7 +16,7 @@ haybox = { source = "src/haybox_cli/main.py", type = "onefile", bundle = false }
 [tool.poetry.dependencies]
 python = "^3.9"
 click = "^8.1.7"
-haybox = "^0.1.2"
+haybox = "0.1.3"
 
 [tool.poetry.dev-dependencies]
 grpcio-tools = "^1.58.0"

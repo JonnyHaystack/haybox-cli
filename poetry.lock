@@ -161,13 +161,13 @@ setuptools = "*"
 
 [[package]]
 name = "haybox"
-version = "0.1.2"
+version = "0.1.3"
 description = "HayBox firmware config protocol Python library"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "haybox-0.1.2-py3-none-any.whl", hash = "sha256:38c7c10c4d21523b28527c9dfee48552e09c084afe0973472d0b070512170b96"},
-    {file = "haybox-0.1.2.tar.gz", hash = "sha256:75aeb875e1da2eb4d1016bc662b6a5c1d5be0e94e95cf42b7cad3d0c8c9f6832"},
+    {file = "haybox-0.1.3-py3-none-any.whl", hash = "sha256:487356372a1a322b26bf0b464b01d2e3e664b29dcbf8940b2b54f4b4360c4fe9"},
+    {file = "haybox-0.1.3.tar.gz", hash = "sha256:080c351a8b0e4b2a08536b77c891eb0bbd76298f508f3f9bb56c657a855beef7"},
 ]
 
 [package.dependencies]
@@ -227,4 +227,4 @@ testing = ["build[virtualenv] (>=1.0.3)", "filelock (>=3.4.0)", "importlib-metad
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "e7e8304c5dc4fc3270ddae071f07073ee890a5c94b390ae8ff6c1a8814fc6695"
+content-hash = "d6e1048d682d632442281d6538f5ae294a8ca5902e457a63a2756636392f5ba1"
