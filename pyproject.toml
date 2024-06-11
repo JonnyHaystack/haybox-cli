@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "haybox-cli"
-version = "0.1.4"
+version = "0.1.5"
 description = "Command line app for interacting with HayBox firmware"
 authors = ["Jonathan Haylett <jonathan@haylett.dev>"]
 license = "GPL-3.0-only"
@@ -16,7 +16,7 @@ haybox = { source = "src/haybox_cli/main.py", type = "onefile", bundle = false }
 [tool.poetry.dependencies]
 python = "^3.9"
 click = "^8.1.7"
-haybox = "0.1.3"
+haybox = "0.1.4"
 
 [tool.poetry.dev-dependencies]
 grpcio-tools = "^1.58.0"
