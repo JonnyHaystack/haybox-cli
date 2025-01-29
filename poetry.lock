@@ -2,13 +2,13 @@
 
 [[package]]
 name = "click"
-version = "8.1.7"
+version = "8.1.8"
 description = "Composable command line interface toolkit"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "click-8.1.7-py3-none-any.whl", hash = "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28"},
-    {file = "click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"},
+    {file = "click-8.1.8-py3-none-any.whl", hash = "sha256:63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2"},
+    {file = "click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a"},
 ]
 
 [package.dependencies]
@@ -27,6 +27,8 @@ files = [
     {file = "cobs-1.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:046933f36200f4163abd938adcb1500c1a7a394955ce20c9e3ebb79e78eabfdf"},
     {file = "cobs-1.2.1-cp312-cp312-win32.whl", hash = "sha256:141107fb3b764772f6db6a52af8158457e00e499f75e3794cb67ea11444839c5"},
     {file = "cobs-1.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:cb02967314f0db41bf04bc475e4963c079912884586003c8290d82cd0f07d621"},
+    {file = "cobs-1.2.1-cp313-cp313-win32.whl", hash = "sha256:5857c85de70f244648d2a5ee1f28e2aa9313752ebd44c8089343c086dd184a77"},
+    {file = "cobs-1.2.1-cp313-cp313-win_amd64.whl", hash = "sha256:3431da8248d91c241ad98ceb08df00824574421132e42359cd31080a1e13bf24"},
     {file = "cobs-1.2.1.tar.gz", hash = "sha256:2af7f8791cde1ae7c6b936f5d0c35fe29feb10de25f79c15b0af0d6729783cc0"},
 ]
 
