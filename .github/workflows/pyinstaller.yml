@@ -35,7 +35,7 @@ jobs:
           cp ./dist/pyinstaller/win_amd64/haybox.exe haybox-windows/haybox-cli-${{ env.VERSION_REF }}.exe
       
       - name: Publish artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: haybox-cli-${{ env.VERSION_REF }}.exe
           path: haybox-windows/haybox-cli-${{ env.VERSION_REF }}.exe
