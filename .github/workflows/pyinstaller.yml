@@ -26,7 +26,7 @@ jobs:
           poetry self add poetry-pyinstaller-plugin
 
       - name: Check out this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build executable
         run: |
